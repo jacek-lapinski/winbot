@@ -10,6 +10,8 @@ namespace Winbot.Notifiers
         private IKeyboardMouseEvents _notifier;
         private DateTime _referenceStartTime;
 
+        public override string Label => "Mouse Double Click";
+
         public override void Start(DateTime referenceStartTime)
         {
             _referenceStartTime = referenceStartTime;

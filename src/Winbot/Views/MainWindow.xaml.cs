@@ -3,7 +3,7 @@ using System.Windows;
 using Winbot.Listeners;
 using Winbot.Notifiers;
 
-namespace Winbot
+namespace Winbot.Views
 {
     public partial class MainWindow : Window
     {

@@ -9,6 +9,10 @@ namespace Winbot.Notifiers
     {
         protected readonly HashSet<IUserActionListener> Listeners;
 
+        public abstract string Label { get; }
+        public abstract void Start(DateTime referenceStartTime);
+        public abstract void Stop();
+
         protected UserActionNotifier()
         {
             Listeners = new HashSet<IUserActionListener>();
@@ -31,8 +35,5 @@ namespace Winbot.Notifiers
                 listener.Update(userAction);
             }
         }
-
-        public abstract void Start(DateTime referenceStartTime);
-        public abstract void Stop();
     }
 }
