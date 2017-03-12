@@ -2,11 +2,11 @@
 
 namespace Winbot.Infrastructure.Ninject
 {
-    internal class NinjectBootstraper
+    internal class NinjectBootstrapper
     {
         private readonly IKernel _kernel;
 
-        public NinjectBootstraper()
+        public NinjectBootstrapper()
         {
             _kernel = new StandardKernel();
         }
@@ -14,6 +14,7 @@ namespace Winbot.Infrastructure.Ninject
         public void Initialize()
         {
             _kernel.Load<DesktopAppModule>();
+            _kernel.Load<ViewModelsModule>();
         }
 
         public T Get<T>()
