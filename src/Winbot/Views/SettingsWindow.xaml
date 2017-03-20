@@ -9,6 +9,22 @@
         DataContext="{Binding Source={StaticResource Locator}, Path=Settings}">
     <TabControl TabStripPlacement="Left">
         <TabControl.Items>
+            <TabItem Header="General">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0">Start</Label>
+                    <Label Grid.Row="1" Grid.Column="0">Stop</Label>
+                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding StartShortcut}"></TextBox>
+                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding StopShortcut}"></TextBox>
+                </Grid>
+            </TabItem>
             <TabItem Header="Events">
                 <ListView ItemsSource="{Binding Settings.Notifiers}">
                     <ListView.ItemContainerStyle>

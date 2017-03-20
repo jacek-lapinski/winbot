@@ -77,11 +77,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Entities\Scenario.cs" />
     <Compile Include="Infrastructure\Ninject\DesktopAppModule.cs" />
     <Compile Include="Infrastructure\Ninject\NinjectBootstrapper.cs" />
     <Compile Include="Infrastructure\Ninject\ViewModelsModule.cs" />
+    <Compile Include="Listeners\ScenarioBuildListener.cs" />
     <Compile Include="Settings\UserActionNotifierSetting.cs" />
     <Compile Include="Settings\AppSettings.cs" />
+    <Compile Include="Utils\IScenarioBuilder.cs" />
+    <Compile Include="Utils\ScenarioBuilder.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
