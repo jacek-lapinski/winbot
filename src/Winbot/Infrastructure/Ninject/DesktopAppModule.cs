@@ -1,5 +1,7 @@
 ﻿using Ninject.Modules;
 using Winbot.Notifiers;
+using Winbot.Repositories;
+using Winbot.Utils;
 
 namespace Winbot.Infrastructure.Ninject
 {
@@ -11,6 +13,8 @@ namespace Winbot.Infrastructure.Ninject
             Bind<UserActionNotifier>().To<MouseDoubleClickNotifier>().InSingletonScope();
 
             Bind<Settings.AppSettings>().ToSelf().InSingletonScope();
+            Bind<InMemoryRepository>().ToSelf().InSingletonScope();
+            Bind<IScenarioBuilder>().To<ScenarioBuilder>().InSingletonScope();
         }
     }
 }

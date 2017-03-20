@@ -14,6 +14,15 @@
             </Button>
             <StackPanel></StackPanel>
         </DockPanel>
+        <Grid DockPanel.Dock="Bottom" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="Stop" Command="{Binding StopCommand}"></Button>
+            <Button Grid.Column="1" Content="Start" Command="{Binding StartCommand}"></Button>
+        </Grid>
+        <Button Margin="5" DockPanel.Dock="Bottom" Content="Show scenarios" Command="{Binding ShowScenariosCommand}"></Button>
         <DockPanel></DockPanel>
     </DockPanel>
 </Window>

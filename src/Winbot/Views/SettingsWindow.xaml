@@ -21,8 +21,8 @@
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" Grid.Column="0">Start</Label>
                     <Label Grid.Row="1" Grid.Column="0">Stop</Label>
-                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding StartShortcut}"></TextBox>
-                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding StopShortcut}"></TextBox>
+                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Settings.StartShortcut}" PreviewKeyDown="UpdateShortcutOnPreviewKeyDown"></TextBox>
+                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Settings.StopShortcut}" PreviewKeyDown="UpdateShortcutOnPreviewKeyDown"></TextBox>
                 </Grid>
             </TabItem>
             <TabItem Header="Events">

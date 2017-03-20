@@ -82,13 +82,18 @@
     <Compile Include="Infrastructure\Ninject\NinjectBootstrapper.cs" />
     <Compile Include="Infrastructure\Ninject\ViewModelsModule.cs" />
     <Compile Include="Listeners\ScenarioBuildListener.cs" />
+    <Compile Include="Repositories\InMemoryRepository.cs" />
     <Compile Include="Settings\UserActionNotifierSetting.cs" />
     <Compile Include="Settings\AppSettings.cs" />
     <Compile Include="Utils\IScenarioBuilder.cs" />
     <Compile Include="Utils\ScenarioBuilder.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\ScenariosViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
+    <Compile Include="Views\ScenariosWindow.xaml.cs">
+      <DependentUpon>ScenariosWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
@@ -109,6 +114,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\ScenariosWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\SettingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
