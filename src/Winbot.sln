@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26206.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Winbot", "Winbot\Winbot.csproj", "{9031273E-EFE5-4E7D-B21A-B8908FFA2E67}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Winbot.UT", "Winbot.UT\Winbot.UT.csproj", "{5E96D4AD-FFD1-4D18-9381-2CE109288B41}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{9031273E-EFE5-4E7D-B21A-B8908FFA2E67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9031273E-EFE5-4E7D-B21A-B8908FFA2E67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9031273E-EFE5-4E7D-B21A-B8908FFA2E67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E96D4AD-FFD1-4D18-9381-2CE109288B41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E96D4AD-FFD1-4D18-9381-2CE109288B41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E96D4AD-FFD1-4D18-9381-2CE109288B41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E96D4AD-FFD1-4D18-9381-2CE109288B41}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
