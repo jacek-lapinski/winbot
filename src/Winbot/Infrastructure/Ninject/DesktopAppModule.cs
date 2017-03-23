@@ -13,7 +13,7 @@ namespace Winbot.Infrastructure.Ninject
             Bind<UserActionNotifier>().To<MouseDoubleClickNotifier>().InSingletonScope();
 
             Bind<Settings.AppSettings>().ToSelf().InSingletonScope();
-            Bind<InMemoryRepository>().ToSelf().InSingletonScope();
+            Bind(typeof(IRepository<>)).To(typeof(LocalRepository<>)).InSingletonScope();
             Bind<IScenarioBuilder>().To<ScenarioBuilder>().InSingletonScope();
         }
     }

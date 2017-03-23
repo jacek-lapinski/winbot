@@ -46,6 +46,9 @@
     <Reference Include="Gma.System.MouseKeyHook, Version=5.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\lib\MouseKeyHook.5.4.0\lib\net40\Gma.System.MouseKeyHook.dll</HintPath>
     </Reference>
+    <Reference Include="LiteDB, Version=3.1.0.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
+      <HintPath>..\..\lib\LiteDB.3.1.0\lib\net35\LiteDB.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\lib\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
@@ -77,12 +80,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\Scenario.cs" />
     <Compile Include="Infrastructure\Ninject\DesktopAppModule.cs" />
     <Compile Include="Infrastructure\Ninject\NinjectBootstrapper.cs" />
     <Compile Include="Infrastructure\Ninject\ViewModelsModule.cs" />
     <Compile Include="Listeners\ScenarioBuildListener.cs" />
-    <Compile Include="Repositories\InMemoryRepository.cs" />
+    <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Repositories\LocalRepository.cs" />
     <Compile Include="Settings\UserActionNotifierSetting.cs" />
     <Compile Include="Settings\AppSettings.cs" />
     <Compile Include="Utils\IScenarioBuilder.cs" />

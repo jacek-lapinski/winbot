@@ -2,7 +2,7 @@
 
 namespace Winbot.Entities
 {
-    internal class Scenario
+    internal class Scenario : Entity
     {
         public string Name { get; set; }
         public DateTime CreateTime { get; set; }

@@ -1,5 +1,6 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using Winbot.Entities;
 using Winbot.Repositories;
 using Winbot.Settings;
 using Winbot.Utils;
@@ -10,8 +11,8 @@ namespace Winbot.ViewModels
     internal class MainViewModel : ViewModelBase
     {
         private readonly AppSettings _appSettings;
-        private readonly InMemoryRepository _inMemoryRepository;
         private readonly IScenarioBuilder _scenarioBuilder;
+        private readonly IRepository<Scenario> _repository;
 
         public RelayCommand ShowSettingsCommand { get; private set; }
         public RelayCommand ShowScenariosCommand { get; private set; }
@@ -19,11 +20,11 @@ namespace Winbot.ViewModels
         public RelayCommand StopCommand { get; private set; }
         public string StartShortcut => _appSettings.StartShortcut;
         public string StopShortcut => _appSettings.StopShortcut;
-        public MainViewModel(AppSettings appSettings, InMemoryRepository inMemoryRepository, IScenarioBuilder scenarioBuilder)
+        public MainViewModel(AppSettings appSettings, IScenarioBuilder scenarioBuilder, IRepository<Scenario> repository)
         {
             _appSettings = appSettings;
             _scenarioBuilder = scenarioBuilder;
-            _inMemoryRepository = inMemoryRepository;
+            _repository = repository;
             ShowSettingsCommand = new RelayCommand(ShowSettings);
             ShowScenariosCommand= new RelayCommand(ShowScenarios);
             StartCommand = new RelayCommand(Start);
@@ -33,7 +34,7 @@ namespace Winbot.ViewModels
         private void Stop()
         {
             var scenario = _scenarioBuilder.Build();
-            _inMemoryRepository.Add(scenario);
+            _repository.Add(scenario);
         }
 
         private void Start()

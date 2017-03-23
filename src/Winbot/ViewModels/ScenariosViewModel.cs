@@ -9,7 +9,7 @@ namespace Winbot.ViewModels
 
     internal class ScenariosViewModel : ViewModelBase
     {
-        private readonly InMemoryRepository _repository;
+        private readonly IRepository<Scenario> _repository;
 
         public IEnumerable<Scenario> Scenarios => _repository.GetAll();
 
@@ -28,7 +28,7 @@ namespace Winbot.ViewModels
 
         public IEnumerable<UserAction> Actions => _selectedScenario != null ? _selectedScenario.Actions : Enumerable.Empty<UserAction>();
 
-        public ScenariosViewModel(InMemoryRepository repository)
+        public ScenariosViewModel(IRepository<Scenario> repository)
         {
             _repository = repository;
         }
