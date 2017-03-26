@@ -1,5 +1,4 @@
-﻿using WindowsInput;
-using Ninject.Modules;
+﻿using Ninject.Modules;
 using Winbot.Executors;
 using Winbot.Notifiers;
 using Winbot.Repositories;
@@ -15,9 +14,6 @@ namespace Winbot.Infrastructure.Ninject
             Bind<UserActionNotifier>().To<MouseDoubleClickNotifier>().InSingletonScope();
             Bind<UserActionNotifier>().To<KeyDownNotifier>().InSingletonScope();
             Bind<UserActionNotifier>().To<KeyUpNotifier>().InSingletonScope();
-
-            Bind<IInputSimulator>().To<InputSimulator>().InSingletonScope();
-            Bind<IMouseSimulator>().To<MouseSimulator>().InSingletonScope();
 
             Bind<IUserActionExecutor>().To<MouseClickExecutor>().InSingletonScope();
             Bind<IUserActionExecutor>().To<MouseDoubleClickExecutor>().InSingletonScope();
