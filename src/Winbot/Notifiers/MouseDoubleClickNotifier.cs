@@ -2,12 +2,13 @@
 using System.Windows.Forms;
 using Gma.System.MouseKeyHook;
 using Winbot.Entities;
+using Winbot.Utils;
 
 namespace Winbot.Notifiers
 {
     internal class MouseDoubleClickNotifier : UserActionNotifier
     {
-        private IKeyboardMouseEvents _notifier;
+        private MouseGlobalHook _notifier;
         private DateTime _referenceStartTime;
 
         public override string Label => "Mouse Double Click";
@@ -16,8 +17,8 @@ namespace Winbot.Notifiers
         {
             _referenceStartTime = referenceStartTime;
             Clean();
-            _notifier = Hook.GlobalEvents();
-            _notifier.MouseDoubleClick += OnMouseDoubleClick;
+            _notifier = new MouseGlobalHook();
+            _notifier.MouseDoubleClicked += OnMouseDoubleClick;
         }
 
         public override void Stop()
@@ -30,7 +31,7 @@ namespace Winbot.Notifiers
             if (_notifier == null)
                 return;
 
-            _notifier.MouseDoubleClick -= OnMouseDoubleClick;
+            _notifier.MouseDoubleClicked -= OnMouseDoubleClick;
 
             _notifier.Dispose();
             _notifier = null;

@@ -1,13 +1,13 @@
 ﻿using System;
-using Gma.System.MouseKeyHook;
 using Winbot.Entities;
 using System.Windows.Forms;
+using Winbot.Utils;
 
 namespace Winbot.Notifiers
 {
     internal class MouseClickNotifier : UserActionNotifier
     {
-        private IKeyboardMouseEvents _notifier;
+        private MouseGlobalHook _notifier;
         private DateTime _referenceStartTime;
 
         public override string Label => "Mouse Click";
@@ -16,8 +16,8 @@ namespace Winbot.Notifiers
         {
             _referenceStartTime = referenceStartTime;
             Clean();
-            _notifier = Hook.GlobalEvents();
-            _notifier.MouseClick += OnMouseClick;
+            _notifier = new MouseGlobalHook();
+            _notifier.MouseClicked += OnMouseClick;
         }
 
         public override void Stop()
@@ -30,7 +30,7 @@ namespace Winbot.Notifiers
             if (_notifier == null)
                 return;
 
-            _notifier.MouseClick -= OnMouseClick;
+            _notifier.MouseClicked -= OnMouseClick;
 
             _notifier.Dispose();
             _notifier = null;

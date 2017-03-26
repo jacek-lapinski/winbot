@@ -57,6 +57,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\lib\MvvmLightLibs.5.3.0.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
@@ -81,17 +82,33 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\KeyDown.cs" />
+    <Compile Include="Entities\KeyUp.cs" />
     <Compile Include="Entities\Scenario.cs" />
+    <Compile Include="Executors\IScenarioExecutor.cs" />
+    <Compile Include="Executors\IUserActionExecutor.cs" />
+    <Compile Include="Executors\KeyDownExecutor.cs" />
+    <Compile Include="Executors\KeyUpExecutor.cs" />
+    <Compile Include="Executors\MouseClickExecutor.cs" />
+    <Compile Include="Executors\MouseDoubleClickExecutor.cs" />
+    <Compile Include="Executors\ScenarioExecutor.cs" />
     <Compile Include="Infrastructure\Ninject\DesktopAppModule.cs" />
     <Compile Include="Infrastructure\Ninject\NinjectBootstrapper.cs" />
     <Compile Include="Infrastructure\Ninject\ViewModelsModule.cs" />
     <Compile Include="Listeners\ScenarioBuildListener.cs" />
+    <Compile Include="Notifiers\KeyDownNotifier.cs" />
+    <Compile Include="Notifiers\KeyUpNotifier.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\LocalRepository.cs" />
     <Compile Include="Settings\UserActionNotifierSetting.cs" />
     <Compile Include="Settings\AppSettings.cs" />
     <Compile Include="Utils\IScenarioBuilder.cs" />
+    <Compile Include="Utils\KeyboardActionSimulator.cs" />
+    <Compile Include="Utils\KeyboardGlobalHook.cs" />
+    <Compile Include="Utils\MouseActionSimulator.cs" />
+    <Compile Include="Utils\MouseGlobalHook.cs" />
     <Compile Include="Utils\ScenarioBuilder.cs" />
+    <Compile Include="Utils\WindowsHookHelper.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ScenariosViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
