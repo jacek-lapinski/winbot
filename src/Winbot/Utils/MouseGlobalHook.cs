@@ -9,12 +9,14 @@ namespace Winbot.Utils
         public event EventHandler<MouseEventArgs> MouseClicked;
         public event EventHandler<MouseEventArgs> MouseDoubleClicked;
 
+        private readonly WindowsHookHelper.HookDelegate _delegate;
         private readonly IntPtr _mouseHandle;
         private bool _disposed;
 
         public MouseGlobalHook()
         {
-            _mouseHandle = WindowsHookHelper.SetWindowsHookEx(WH_MOUSE_LL, KeyboardHookDelegate, IntPtr.Zero, 0);
+            _delegate = KeyboardHookDelegate;
+            _mouseHandle = WindowsHookHelper.SetWindowsHookEx(WH_MOUSE_LL, _delegate, IntPtr.Zero, 0);
         }
 
         private IntPtr KeyboardHookDelegate(int code, IntPtr wParam, IntPtr lParam)
