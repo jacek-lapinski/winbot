@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using System.Windows.Threading;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Threading;
 using Winbot.Entities;
 using Winbot.Executors;
 using Winbot.Repositories;
