@@ -19,11 +19,11 @@ namespace Winbot.Listeners
             _actions.Add(userAction);
         }
 
-        public Scenario Build(string name)
+        public Scenario Build()
         {
             var scenario = new Scenario()
             {
-                Name = name,
+                Name = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss"),
                 CreateTime = DateTime.UtcNow,
                 UpdateTime = DateTime.UtcNow,
                 Actions = _actions.ToArray()

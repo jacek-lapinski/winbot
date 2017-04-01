@@ -5,7 +5,6 @@ namespace Winbot.Utils
 {
     internal class KeyboardActionSimulator
     {
-
         public static void KeyDown(Keys keyCode)
         {
             keybd_event((byte)keyCode, 0, KEYEVENTF_EXTENDEDKEY, 0);

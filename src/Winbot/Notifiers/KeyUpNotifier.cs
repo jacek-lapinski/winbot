@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Windows.Forms;
-using Gma.System.MouseKeyHook;
 using Winbot.Entities;
+using Winbot.Utils;
 
 namespace Winbot.Notifiers
 {
     internal class KeyUpNotifier : UserActionNotifier
     {
-        private IKeyboardMouseEvents _notifier;
+        private KeyboardGlobalHook _notifier;
         private DateTime _referenceStartTime;
 
         public override string Label => "Key Up";
@@ -15,7 +15,7 @@ namespace Winbot.Notifiers
         {
             _referenceStartTime = referenceStartTime;
             Clean();
-            _notifier = Hook.GlobalEvents();
+            _notifier = new KeyboardGlobalHook();
             _notifier.KeyUp += OnKeyUp;
         }
 

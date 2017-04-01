@@ -43,9 +43,6 @@
     <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.3.0.19032, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
       <HintPath>..\..\lib\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
     </Reference>
-    <Reference Include="Gma.System.MouseKeyHook, Version=5.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\MouseKeyHook.5.4.0\lib\net40\Gma.System.MouseKeyHook.dll</HintPath>
-    </Reference>
     <Reference Include="LiteDB, Version=3.1.0.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
       <HintPath>..\..\lib\LiteDB.3.1.0\lib\net35\LiteDB.dll</HintPath>
     </Reference>
@@ -96,12 +93,17 @@
     <Compile Include="Infrastructure\Ninject\NinjectBootstrapper.cs" />
     <Compile Include="Infrastructure\Ninject\ViewModelsModule.cs" />
     <Compile Include="Listeners\ScenarioBuildListener.cs" />
+    <Compile Include="Messages\TurnOffRecordingMessage.cs" />
+    <Compile Include="Messages\TurnOnRecordingMessage.cs" />
     <Compile Include="Notifiers\KeyDownNotifier.cs" />
     <Compile Include="Notifiers\KeyUpNotifier.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\LocalRepository.cs" />
     <Compile Include="Settings\UserActionNotifierSetting.cs" />
     <Compile Include="Settings\AppSettings.cs" />
+    <Compile Include="Utils\Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Utils\Converters\NotBoolToVisibilityConverter.cs" />
     <Compile Include="Utils\IScenarioBuilder.cs" />
     <Compile Include="Utils\KeyboardActionSimulator.cs" />
     <Compile Include="Utils\KeyboardGlobalHook.cs" />
@@ -110,14 +112,9 @@
     <Compile Include="Utils\ScenarioBuilder.cs" />
     <Compile Include="Utils\WindowsHookHelper.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\ScenariosViewModel.cs" />
-    <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
-    <Compile Include="Views\ScenariosWindow.xaml.cs">
-      <DependentUpon>ScenariosWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SettingsWindow.xaml.cs">
-      <DependentUpon>SettingsWindow.xaml</DependentUpon>
+    <Compile Include="Views\RecordingWindow.xaml.cs">
+      <DependentUpon>RecordingWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -136,11 +133,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\ScenariosWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\SettingsWindow.xaml">
+    <Page Include="Views\RecordingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

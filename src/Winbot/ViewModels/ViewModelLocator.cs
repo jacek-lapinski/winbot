@@ -12,7 +12,5 @@ namespace Winbot.ViewModels
         }
 
         public MainViewModel Main => _bootstraper.Get<MainViewModel>();
-        public SettingsViewModel Settings => _bootstraper.Get<SettingsViewModel>();
-        public ScenariosViewModel Scenarios => _bootstraper.Get<ScenariosViewModel>();
     }
 }

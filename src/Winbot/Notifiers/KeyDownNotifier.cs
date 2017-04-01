@@ -1,14 +1,13 @@
 ﻿using System;
 using Winbot.Entities;
 using System.Windows.Forms;
-using Gma.System.MouseKeyHook;
 using Winbot.Utils;
 
 namespace Winbot.Notifiers
 {
     internal class KeyDownNotifier : UserActionNotifier
     {
-        private IKeyboardMouseEvents _notifier;
+        private KeyboardGlobalHook _notifier;
         private DateTime _referenceStartTime;
 
         public override string Label => "Key down";
@@ -17,7 +16,7 @@ namespace Winbot.Notifiers
         {
             _referenceStartTime = referenceStartTime;
             Clean();
-            _notifier = Hook.GlobalEvents();
+            _notifier = new KeyboardGlobalHook();
             _notifier.KeyDown += OnKeyDown;
         }
 

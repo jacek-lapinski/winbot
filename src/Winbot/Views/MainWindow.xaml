@@ -5,24 +5,119 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Winbot"
         mc:Ignorable="d"
-        Title="Winbot" Height="350" Width="525"
+        ResizeMode="CanMinimize"
+        Title="Winbot" Height="400" Width="800"
+        Visibility="{Binding IsIdle, Converter={StaticResource BoolToVisibilityConverter}}"
         DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
     <DockPanel>
-        <DockPanel Dock="Top" Margin="5">
-            <Button DockPanel.Dock="Right" Background="Transparent" BorderThickness="0" Command="{Binding ShowSettingsCommand}" Width="30" ToolTip="Settings">
-                <Image Source="../Resources/Images/settings.png"></Image>
-            </Button>
-            <StackPanel></StackPanel>
-        </DockPanel>
-        <Grid DockPanel.Dock="Bottom" Margin="5">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content="Stop" Command="{Binding StopCommand}"></Button>
-            <Button Grid.Column="1" Content="Start" Command="{Binding StartCommand}"></Button>
-        </Grid>
-        <Button Margin="5" DockPanel.Dock="Bottom" Content="Show scenarios" Command="{Binding ShowScenariosCommand}"></Button>
-        <DockPanel></DockPanel>
+        <TabControl TabStripPlacement="Left">
+            <TabItem Header="New scenario">
+                <Button Grid.Column="1" Content="Start recording" Command="{Binding StartCommand}" Width="150" Height="50"></Button>
+            </TabItem>
+            <TabItem Header="Saved scenarios">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="2"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <GridSplitter Grid.Column="1" ResizeDirection="Columns" ResizeBehavior="PreviousAndNext" HorizontalAlignment="Stretch"></GridSplitter>
+                    <ListBox Grid.Column="0" ItemsSource="{Binding Scenarios}" SelectedItem="{Binding SelectedScenario, Mode=TwoWay}" SelectionMode="Single">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Margin="2">
+                                    <TextBlock Text="{Binding Name}">
+                                        <TextBlock.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="Execute" Command="{Binding Source={StaticResource Locator}, Path=Main.ExecuteScenarioCommand}" CommandParameter="{Binding}" />
+                                                <Separator></Separator>
+                                                <MenuItem Header="Edit"></MenuItem>
+                                                <MenuItem Header="Delete" Command="{Binding Source={StaticResource Locator}, Path=Main.DeleteScenarioCommand}" CommandParameter="{Binding}"></MenuItem>
+                                            </ContextMenu>
+                                        </TextBlock.ContextMenu>
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <ListView Grid.Column="2" ItemsSource="{Binding Actions}">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListViewItem}">
+                                <Setter Property="Background" Value="Transparent" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                            <ContentPresenter />
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Margin="5"></StackPanel>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Margin="2">
+                                    <TextBlock Text="{Binding}"></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Settings">
+                <TabControl TabStripPlacement="Top">
+                    <TabControl.Items>
+                        <TabItem Header="Database">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Label Grid.Row="0" Grid.Column="0">File path</Label>
+                                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Settings.DatabaseFilePath}" IsEnabled="False"></TextBox>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Events">
+                            <ListView ItemsSource="{Binding Settings.Notifiers}">
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="{x:Type ListViewItem}">
+                                        <Setter Property="Background" Value="Transparent" />
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                    <ContentPresenter />
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Margin="5"></StackPanel>
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" Margin="2">
+                                            <CheckBox IsChecked="{Binding Selected}"></CheckBox>
+                                            <TextBlock Text="{Binding Notifier.Label}"></TextBlock>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </TabItem>
+                    </TabControl.Items>
+                </TabControl>
+            </TabItem>
+        </TabControl>
     </DockPanel>
+    
 </Window>

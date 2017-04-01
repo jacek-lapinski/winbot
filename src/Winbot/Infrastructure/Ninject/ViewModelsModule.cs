@@ -8,7 +8,6 @@ namespace Winbot.Infrastructure.Ninject
         public override void Load()
         {
             Bind<MainViewModel>().ToSelf().InSingletonScope();
-            Bind<SettingsViewModel>().ToSelf().InSingletonScope();
         }
     }
 }

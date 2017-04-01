@@ -32,11 +32,7 @@ namespace Winbot.Utils
         {
             StopBuilding();
             UnsubscribeScenarioBuildListener();
-
-            //todo get name
-            var name = Guid.NewGuid().ToString();
-
-            var scenario = _scenarioBuildListener.Build(name);
+            var scenario = _scenarioBuildListener.Build();
             return scenario;
         }
 
