@@ -59,7 +59,7 @@
                                             <ContextMenu>
                                                 <MenuItem Header="Execute" Command="{Binding Source={StaticResource Locator}, Path=Main.ExecuteScenarioCommand}" CommandParameter="{Binding}" />
                                                 <Separator></Separator>
-                                                <MenuItem Header="Edit"></MenuItem>
+                                                <MenuItem Header="Edit" Command="{Binding Source={StaticResource Locator}, Path=Main.EditScenarioCommand}" CommandParameter="{Binding}"></MenuItem>
                                                 <MenuItem Header="Delete" Command="{Binding Source={StaticResource Locator}, Path=Main.DeleteScenarioCommand}" CommandParameter="{Binding}"></MenuItem>
                                             </ContextMenu>
                                         </TextBlock.ContextMenu>
@@ -89,7 +89,8 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" Margin="2">
-                                    <TextBlock Text="{Binding}"></TextBlock>
+                                    <TextBlock Text="{Binding}">
+                                    </TextBlock>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>

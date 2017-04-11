@@ -3,6 +3,7 @@ using LiteDB;
 
 namespace Winbot.Entities
 {
+    [Serializable]
     internal abstract class UserAction
     {
         public TimeSpan Time { get; set; }

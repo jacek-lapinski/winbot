@@ -26,7 +26,7 @@ namespace Winbot.Listeners
                 Name = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss"),
                 CreateTime = DateTime.UtcNow,
                 UpdateTime = DateTime.UtcNow,
-                Actions = _actions.ToArray()
+                Actions = _actions.ToList()
             };
             return scenario;
         }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -10,6 +11,7 @@ using Winbot.Executors;
 using Winbot.Repositories;
 using Winbot.Settings;
 using Winbot.Utils;
+using Winbot.Views;
 
 namespace Winbot.ViewModels
 {
@@ -24,6 +26,7 @@ namespace Winbot.ViewModels
         public RelayCommand StopCommand { get; private set; }
         public RelayCommand<Scenario> ExecuteScenarioCommand { get; private set; }
         public RelayCommand<Scenario> DeleteScenarioCommand { get; private set; }
+        public RelayCommand<Scenario> EditScenarioCommand { get; private set; }
 
 
         public AppSettings Settings { get; private set; }
@@ -82,9 +85,25 @@ namespace Winbot.ViewModels
             DeleteScenarioCommand = new RelayCommand<Scenario>(DeleteScenario);
             StartCommand = new RelayCommand(Start);
             StopCommand = new RelayCommand(Stop);
+            EditScenarioCommand = new RelayCommand<Scenario>(EditScenario);
 
             Scenarios = new ObservableCollection<Scenario>(_repository.GetAll().OrderByDescending(s => s.CreateTime));
             IsRecording = false;
+        }
+
+        private void EditScenario(Scenario scenario)
+        {
+            var onSave = new Action<ICloneable>((s) =>
+            {
+                var updatedScenario = (Scenario) s;
+                _repository.Update(updatedScenario);
+                var index = Scenarios.IndexOf(scenario);
+                Scenarios.Remove(scenario);
+                Scenarios.Insert(index, updatedScenario);
+                SelectedScenario = updatedScenario;
+            });
+            var dialog = new DialogEditorWindow(scenario, onSave);
+            dialog.ShowDialog();
         }
 
         private void Stop()

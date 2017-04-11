@@ -19,8 +19,8 @@ namespace Winbot.Utils
         [DllImport("user32.dll", SetLastError = true)]
         static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
 
-        private const int KEYEVENTF_EXTENDEDKEY = 0x0001; //Key down flag
-        private const int KEYEVENTF_KEYUP = 0x0002; //Key up flag
+        private const int KEYEVENTF_EXTENDEDKEY = 0x0001;
+        private const int KEYEVENTF_KEYUP = 0x0002; 
         #endregion
     }
 }
