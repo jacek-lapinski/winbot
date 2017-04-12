@@ -23,7 +23,7 @@
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="Button">
-                                <Border CornerRadius="10" Background="White" BorderBrush="{StaticResource MainColor}" BorderThickness="2" >
+                                <Border CornerRadius="10" Background="White" BorderBrush="{StaticResource MainColor}" BorderThickness="2" MinWidth="70">
                                     <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                                 </Border>
                             </ControlTemplate>

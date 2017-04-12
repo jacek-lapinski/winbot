@@ -5,6 +5,56 @@ namespace Winbot.Utils
 {
     internal static class MouseActionSimulator
     {
+        public static void MouseUp(MouseButtons button, int x, int y)
+        {
+            SetCursorPos(x, y);
+            switch (button)
+            {
+                case MouseButtons.Left:
+                    mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
+                    break;
+                case MouseButtons.Right:
+                    mouse_event(MOUSEEVENTF_RIGHTUP, 0, 0, 0, 0);
+                    break;
+                case MouseButtons.Middle:
+                    mouse_event(MOUSEEVENTF_MIDDLEUP, 0, 0, 0, 0);
+                    break;
+                case MouseButtons.XButton1:
+                    mouse_event(MOUSEEVENTF_XUP, 0, 0, XBUTTON1, 0);
+                    break;
+                case MouseButtons.XButton2:
+                    mouse_event(MOUSEEVENTF_XUP, 0, 0, XBUTTON2, 0);
+                    break;
+                default:
+                    return;
+            }
+        }
+
+        public static void MouseDown(MouseButtons button, int x, int y)
+        {
+            SetCursorPos(x, y);
+            switch (button)
+            {
+                case MouseButtons.Left:
+                    mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
+                    break;
+                case MouseButtons.Right:
+                    mouse_event(MOUSEEVENTF_RIGHTDOWN, 0, 0, 0, 0);
+                    break;
+                case MouseButtons.Middle:
+                    mouse_event(MOUSEEVENTF_MIDDLEDOWN, 0, 0, 0, 0);
+                    break;
+                case MouseButtons.XButton1:
+                    mouse_event(MOUSEEVENTF_XDOWN, 0, 0, XBUTTON1, 0);
+                    break;
+                case MouseButtons.XButton2:
+                    mouse_event(MOUSEEVENTF_XDOWN, 0, 0, XBUTTON2, 0);
+                    break;
+                default:
+                    return;
+            }
+        }
+
         public static void MouseClick(MouseButtons button, int x, int y)
         {
             SetCursorPos(x, y);

@@ -136,7 +136,7 @@
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal" Margin="2">
-                                            <CheckBox IsChecked="{Binding Selected}" Margin="0,0,5,0"></CheckBox>
+                                            <CheckBox IsChecked="{Binding Selected, Mode=TwoWay}" Margin="0,0,5,0"></CheckBox>
                                             <TextBlock Text="{Binding Notifier.Label}"></TextBlock>
                                         </StackPanel>
                                     </DataTemplate>

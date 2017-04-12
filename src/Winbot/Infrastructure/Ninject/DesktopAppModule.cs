@@ -12,11 +12,15 @@ namespace Winbot.Infrastructure.Ninject
         {
             Bind<UserActionNotifier>().To<MouseClickNotifier>().InSingletonScope();
             Bind<UserActionNotifier>().To<MouseDoubleClickNotifier>().InSingletonScope();
+            Bind<UserActionNotifier>().To<MouseDownNotifier>().InSingletonScope();
+            Bind<UserActionNotifier>().To<MouseUpNotifier>().InSingletonScope();
             Bind<UserActionNotifier>().To<KeyDownNotifier>().InSingletonScope();
             Bind<UserActionNotifier>().To<KeyUpNotifier>().InSingletonScope();
 
             Bind<IUserActionExecutor>().To<MouseClickExecutor>().InSingletonScope();
             Bind<IUserActionExecutor>().To<MouseDoubleClickExecutor>().InSingletonScope();
+            Bind<IUserActionExecutor>().To<MouseDownExecutor>().InSingletonScope();
+            Bind<IUserActionExecutor>().To<MouseUpExecutor>().InSingletonScope();
             Bind<IUserActionExecutor>().To<KeyDownExecutor>().InSingletonScope();
             Bind<IUserActionExecutor>().To<KeyUpExecutor>().InSingletonScope();
 

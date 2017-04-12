@@ -20,11 +20,11 @@ namespace Winbot.Settings
             }
         }
 
-        public IEnumerable<UserActionNotifierSetting> Notifiers { get; }
+        public UserActionNotifierSetting[] Notifiers { get; }
 
         public AppSettings(IEnumerable<UserActionNotifier> notifiers)
         {
-            Notifiers = notifiers.Select(n => new UserActionNotifierSetting(n){ Selected = true });
+            Notifiers = notifiers.Select(n => new UserActionNotifierSetting(n){ Selected = true }).ToArray();
             DatabaseFilePath = @"C:\db\winbot.db";
         }
 

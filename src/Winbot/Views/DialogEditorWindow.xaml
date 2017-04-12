@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Winbot.Views"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
+        ShowInTaskbar="False"
         Title="Editor" Height="300" Width="500">
     <DockPanel>
         <Border DockPanel.Dock="Bottom" Background="#DDDDDD">

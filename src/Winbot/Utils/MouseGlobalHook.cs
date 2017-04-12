@@ -8,6 +8,8 @@ namespace Winbot.Utils
     {
         public event EventHandler<MouseEventArgs> MouseClicked;
         public event EventHandler<MouseEventArgs> MouseDoubleClicked;
+        public event EventHandler<MouseEventArgs> MouseDown;
+        public event EventHandler<MouseEventArgs> MouseUp;
 
         private readonly WindowsHookHelper.HookDelegate _delegate;
         private readonly IntPtr _mouseHandle;
@@ -46,18 +48,38 @@ namespace Winbot.Utils
                     case WM_LBUTTONUP:
                         mouseEventArgs = new MouseEventArgs(MouseButtons.Left, 1, arg.pt.x, arg.pt.y, 0);
                         OnMouseClicked(mouseEventArgs);
+                        OnMouseUp(mouseEventArgs);
                         break;
                     case WM_RBUTTONUP:
                         mouseEventArgs = new MouseEventArgs(MouseButtons.Right, 1, arg.pt.x, arg.pt.y, 0);
                         OnMouseClicked(mouseEventArgs);
+                        OnMouseUp(mouseEventArgs);
                         break;
                     case WM_MBUTTONUP:
                         mouseEventArgs = new MouseEventArgs(MouseButtons.Middle, 1, arg.pt.x, arg.pt.y, 0);
                         OnMouseClicked(mouseEventArgs);
+                        OnMouseUp(mouseEventArgs);
                         break;
                     case WM_XBUTTONUP:
                         mouseEventArgs = new MouseEventArgs(arg.mouseData == 1 ? MouseButtons.XButton1 : MouseButtons.XButton2, 1, arg.pt.x, arg.pt.y, 0);
                         OnMouseClicked(mouseEventArgs);
+                        OnMouseUp(mouseEventArgs);
+                        break;
+                    case WM_LBUTTONDOWN:
+                        mouseEventArgs = new MouseEventArgs(MouseButtons.Left, 1, arg.pt.x, arg.pt.y, 0);
+                        OnMouseDown(mouseEventArgs);
+                        break;
+                    case WM_RBUTTONDOWN:
+                        mouseEventArgs = new MouseEventArgs(MouseButtons.Right, 1, arg.pt.x, arg.pt.y, 0);
+                        OnMouseDown(mouseEventArgs);
+                        break;
+                    case WM_MBUTTONDOWN:
+                        mouseEventArgs = new MouseEventArgs(MouseButtons.Middle, 1, arg.pt.x, arg.pt.y, 0);
+                        OnMouseDown(mouseEventArgs);
+                        break;
+                    case WM_XBUTTONDOWN:
+                        mouseEventArgs = new MouseEventArgs(arg.mouseData == 1 ? MouseButtons.XButton1 : MouseButtons.XButton2, 1, arg.pt.x, arg.pt.y, 0);
+                        OnMouseDown(mouseEventArgs);
                         break;
                 }
             }
@@ -73,6 +95,16 @@ namespace Winbot.Utils
         protected virtual void OnMouseDoubleClicked(MouseEventArgs e)
         {
             MouseDoubleClicked?.Invoke(this, e);
+        }
+
+        protected virtual void OnMouseDown(MouseEventArgs e)
+        {
+            MouseDown?.Invoke(this, e);
+        }
+
+        protected virtual void OnMouseUp(MouseEventArgs e)
+        {
+            MouseUp?.Invoke(this, e);
         }
 
         #region WinAPI
@@ -136,5 +168,6 @@ namespace Winbot.Utils
             Dispose(false);
         }
         #endregion
+
     }
 }
