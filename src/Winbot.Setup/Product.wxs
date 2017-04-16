@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"><?define Winbot_TargetDir=$(var.Winbot.TargetDir)?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   
-	<Product Id="*" Name="Winbot" Language="1033" Version="1.0.0.0" Manufacturer="JL" UpgradeCode="ae1bcb42-2a09-4371-9d3b-c6ba36b4358d">
+  <?define Winbot_TargetDir=$(var.Winbot.TargetDir)?>
+  <?define Version="!(bind.FileVersion.Winbot.exe)"?>
+  <?define Name="Winbot $(var.Version)"?>
+  
+	<Product Id="*" Name="$(var.Name)" Language="1033" Version="$(var.Version)" Manufacturer="JL" UpgradeCode="ae1bcb42-2a09-4371-9d3b-c6ba36b4358d">
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
 		<MajorUpgrade DowngradeErrorMessage="A newer version of Winbot is already installed." />
