@@ -4,13 +4,11 @@ namespace Winbot.ViewModels
 {
     internal class ViewModelLocator
     {
-        private readonly NinjectBootstrapper _bootstraper;
         public ViewModelLocator()
         {
-            _bootstraper = new NinjectBootstrapper();
-            _bootstraper.Initialize();
+            NinjectBootstrapper.Initialize();
         }
 
-        public MainViewModel Main => _bootstraper.Get<MainViewModel>();
+        public MainViewModel Main => NinjectBootstrapper.Get<MainViewModel>();
     }
 }

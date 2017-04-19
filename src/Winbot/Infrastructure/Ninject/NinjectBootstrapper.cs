@@ -2,24 +2,24 @@
 
 namespace Winbot.Infrastructure.Ninject
 {
-    internal class NinjectBootstrapper
+    internal static class NinjectBootstrapper
     {
-        private readonly IKernel _kernel;
+        private static readonly IKernel Kernel;
 
-        public NinjectBootstrapper()
+        static NinjectBootstrapper()
         {
-            _kernel = new StandardKernel();
+            Kernel = new StandardKernel();
         }
 
-        public void Initialize()
+        public static void Initialize()
         {
-            _kernel.Load<DesktopAppModule>();
-            _kernel.Load<ViewModelsModule>();
+            Kernel.Load<DesktopAppModule>();
+            Kernel.Load<ViewModelsModule>();
         }
 
-        public T Get<T>()
+        public static T Get<T>()
         {
-            return _kernel.Get<T>();
+            return Kernel.Get<T>();
         }
     }
 }
