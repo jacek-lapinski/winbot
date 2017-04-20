@@ -2,7 +2,7 @@
 
 namespace Winbot.Entities
 {
-    internal class MouseUp : UserAction
+    public class MouseUp : UserAction
     {
         public MouseButtons Button { get; set; }
         public int X { get; set; }

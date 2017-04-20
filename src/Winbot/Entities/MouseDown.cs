@@ -4,7 +4,7 @@ using System.Windows.Forms;
 namespace Winbot.Entities
 {
     [Serializable]
-    internal class MouseDown : UserAction
+    public class MouseDown : UserAction
     {
         public MouseButtons Button { get; set; }
         public int X { get; set; }

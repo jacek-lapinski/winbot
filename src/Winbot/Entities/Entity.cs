@@ -6,7 +6,7 @@ using LiteDB;
 namespace Winbot.Entities
 {
     [Serializable]
-    internal abstract class Entity : ICloneable
+    public abstract class Entity : ICloneable
     {
         [BsonId]
         public Guid Id { get; set; }

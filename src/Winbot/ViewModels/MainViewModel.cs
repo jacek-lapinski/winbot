@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Threading;
 using GalaSoft.MvvmLight;
@@ -20,6 +21,7 @@ namespace Winbot.ViewModels
         private readonly IScenarioExecutor _scenarioExecutor;
         private readonly IScenarioBuilder _scenarioBuilder;
         private readonly IRepository<Scenario> _repository;
+        private readonly IScenarioFileManager _scenarioFileManager;
 
 
         public RelayCommand StartCommand { get; private set; }
@@ -27,7 +29,9 @@ namespace Winbot.ViewModels
         public RelayCommand<Scenario> ExecuteScenarioCommand { get; private set; }
         public RelayCommand<Scenario> DeleteScenarioCommand { get; private set; }
         public RelayCommand<Scenario> EditScenarioCommand { get; private set; }
+        public RelayCommand<Scenario> ExportScenarioCommand { get; private set; }
 
+        public string AppName => $"Winbot {Assembly.GetExecutingAssembly().GetName().Version}";
 
         public AppSettings Settings { get; private set; }
 
@@ -74,21 +78,28 @@ namespace Winbot.ViewModels
 
         public bool IsIdle => !_isExecuting && !_isRecording;
 
-        public MainViewModel(AppSettings appSettings, IScenarioBuilder scenarioBuilder, IRepository<Scenario> repository, IScenarioExecutor scenarioExecutor)
+        public MainViewModel(AppSettings appSettings, IScenarioBuilder scenarioBuilder, IRepository<Scenario> repository, IScenarioExecutor scenarioExecutor, IScenarioFileManager scenarioFileManager)
         {
             Settings = appSettings;
             _scenarioBuilder = scenarioBuilder;
             _repository = repository;
             _scenarioExecutor = scenarioExecutor;
+            _scenarioFileManager = scenarioFileManager;
 
             ExecuteScenarioCommand = new RelayCommand<Scenario>(ExecuteScenario);
             DeleteScenarioCommand = new RelayCommand<Scenario>(DeleteScenario);
             StartCommand = new RelayCommand(Start);
             StopCommand = new RelayCommand(Stop);
             EditScenarioCommand = new RelayCommand<Scenario>(EditScenario);
+            ExportScenarioCommand = new RelayCommand<Scenario>(ExportScenario);
 
             Scenarios = new ObservableCollection<Scenario>(_repository.GetAll().OrderByDescending(s => s.CreateTime));
             IsRecording = false;
+        }
+
+        private void ExportScenario(Scenario scenario)
+        {
+            _scenarioFileManager.Save(scenario);
         }
 
         private void EditScenario(Scenario scenario)
@@ -96,6 +107,7 @@ namespace Winbot.ViewModels
             var onSave = new Action<ICloneable>((s) =>
             {
                 var updatedScenario = (Scenario) s;
+                updatedScenario.UpdateTime = DateTime.Now;
                 _repository.Update(updatedScenario);
                 var index = Scenarios.IndexOf(scenario);
                 Scenarios.Remove(scenario);

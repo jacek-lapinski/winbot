@@ -13,7 +13,6 @@
     <Application.Resources>
         <ResourceDictionary>
             <viewModels:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
-            <utils:StartupHandler x:Key="StartupHandler"></utils:StartupHandler>
             <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"></converters:BoolToVisibilityConverter>
             <converters:NotBoolToVisibilityConverter x:Key="NotBoolToVisibilityConverter"></converters:NotBoolToVisibilityConverter>
             

@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  
+
   <?define Winbot_TargetDir=$(var.Winbot.TargetDir)?>
   <?define Version="!(bind.FileVersion.Winbot.exe)"?>
   <?define Name="Winbot $(var.Version)"?>
-  
-	<Product Id="*" Name="$(var.Name)" Language="1033" Version="$(var.Version)" Manufacturer="JL" UpgradeCode="ae1bcb42-2a09-4371-9d3b-c6ba36b4358d">
-		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
-		<MajorUpgrade DowngradeErrorMessage="A newer version of Winbot is already installed." />
-		<MediaTemplate EmbedCab="yes"/>
+  <Product Id="*" Name="$(var.Name)" Language="1033" Version="$(var.Version)" Manufacturer="JL" UpgradeCode="ae1bcb42-2a09-4371-9d3b-c6ba36b4358d">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
-		<Feature Id="ProductFeature" Title="Winbot" Level="1">
-			<ComponentGroupRef Id="ProductComponents" />
+    <MajorUpgrade DowngradeErrorMessage="A newer version of Winbot is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+
+    <Feature Id="ProductFeature" Title="Winbot" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
       <ComponentRef Id="ApplicationShortcut" />
       <ComponentRef Id="ApplicationShortcutDesktop" />
-		</Feature>
-  
+    </Feature>
+
     <UIRef Id="WixUI_InstallDir" />
     <WixVariable Id="WixUILicenseRtf" Value="license.rtf" />
     <Icon Id="icon.ico" SourceFile="$(var.Winbot.ProjectDir)winbot.ico" />
     <Property Id="ARPPRODUCTICON" Value="icon.ico" />
     <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
-	</Product>
-  
+  </Product>
+
   <Fragment>
-		<Directory Id="TARGETDIR" Name="SourceDir">
-			<Directory Id="ProgramFilesFolder">
-				<Directory Id="INSTALLFOLDER" Name="Winbot" />
-			</Directory>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="Winbot" />
+      </Directory>
       <Directory Id="ProgramMenuFolder">
         <Directory Id="ApplicationProgramsFolder" Name="Winbot" />
       </Directory>
       <Directory Id="DesktopFolder" Name="Desktop"></Directory>
-		</Directory>
-	</Fragment>
+    </Directory>
+  </Fragment>
   <Fragment>
     <DirectoryRef Id="ApplicationProgramsFolder">
       <Component Id="ApplicationShortcut" Guid="9418cf18-6559-4270-adc8-069a23ac83ff">
@@ -52,53 +52,59 @@
     </DirectoryRef>
   </Fragment>
 
-	<Fragment>
-		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
-			 <Component Id="Winbot.exe" Guid="cdf3c934-b261-4b6d-b67b-16e62974add5">
-			   <File Id="Winbot.exe" Name="Winbot.exe" Source="$(var.Winbot_TargetDir)Winbot.exe" />
-			 </Component>
-			 <Component Id="Winbot.exe.config" Guid="200a3af6-d51b-48c1-b14c-f09e3acb3d1a">
-			   <File Id="Winbot.exe.config" Name="Winbot.exe.config" Source="$(var.Winbot_TargetDir)Winbot.exe.config" />
-			 </Component>
-			 <Component Id="GalaSoft.MvvmLight.dll" Guid="263a6e0f-bf86-4149-abfb-62e1d5b4d09f">
-			   <File Id="GalaSoft.MvvmLight.dll" Name="GalaSoft.MvvmLight.dll" Source="$(var.Winbot_TargetDir)GalaSoft.MvvmLight.dll" />
-			 </Component>
-			 <Component Id="GalaSoft.MvvmLight.Extras.dll" Guid="5d900aea-7f5c-4a94-b939-5b4cf9d5ddf9">
-			   <File Id="GalaSoft.MvvmLight.Extras.dll" Name="GalaSoft.MvvmLight.Extras.dll" Source="$(var.Winbot_TargetDir)GalaSoft.MvvmLight.Extras.dll" />
-			 </Component>
-			 <Component Id="GalaSoft.MvvmLight.Platform.dll" Guid="8c9408ec-ec6c-4e4b-8e68-8f372e923d7e">
-			   <File Id="GalaSoft.MvvmLight.Platform.dll" Name="GalaSoft.MvvmLight.Platform.dll" Source="$(var.Winbot_TargetDir)GalaSoft.MvvmLight.Platform.dll" />
-			 </Component>
-			 <Component Id="LiteDB.dll" Guid="082ac405-f394-4c53-aa82-d91c70c79d13">
-			   <File Id="LiteDB.dll" Name="LiteDB.dll" Source="$(var.Winbot_TargetDir)LiteDB.dll" />
-			 </Component>
-			 <Component Id="Microsoft.Practices.ServiceLocation.dll" Guid="994d15da-561c-4a0e-aa9a-3b19a2c63e55">
-			   <File Id="Microsoft.Practices.ServiceLocation.dll" Name="Microsoft.Practices.ServiceLocation.dll" Source="$(var.Winbot_TargetDir)Microsoft.Practices.ServiceLocation.dll" />
-			 </Component>
-			 <Component Id="Ninject.dll" Guid="3fe9433b-a7c1-4165-9a9b-e663cb63cfaa">
-			   <File Id="Ninject.dll" Name="Ninject.dll" Source="$(var.Winbot_TargetDir)Ninject.dll" />
-			 </Component>
-			 <Component Id="System.Windows.Interactivity.dll" Guid="d1ca9a92-c2c9-413c-a3f9-fc44fadc7210">
-			   <File Id="System.Windows.Interactivity.dll" Name="System.Windows.Interactivity.dll" Source="$(var.Winbot_TargetDir)System.Windows.Interactivity.dll" />
-			 </Component>
-			 <Component Id="Xceed.Wpf.AvalonDock.dll" Guid="29766d75-2e50-4fbb-bdb7-da15559709d4">
-			   <File Id="Xceed.Wpf.AvalonDock.dll" Name="Xceed.Wpf.AvalonDock.dll" Source="$(var.Winbot_TargetDir)Xceed.Wpf.AvalonDock.dll" />
-			 </Component>
-			 <Component Id="Xceed.Wpf.AvalonDock.Themes.Aero.dll" Guid="291b72e6-26fe-45fc-90b1-bf07b13a454d">
-			   <File Id="Xceed.Wpf.AvalonDock.Themes.Aero.dll" Name="Xceed.Wpf.AvalonDock.Themes.Aero.dll" Source="$(var.Winbot_TargetDir)Xceed.Wpf.AvalonDock.Themes.Aero.dll" />
-			 </Component>
-			 <Component Id="Xceed.Wpf.AvalonDock.Themes.Metro.dll" Guid="5bdd2bdf-c9df-4651-a9df-319842b3f4ad">
-			   <File Id="Xceed.Wpf.AvalonDock.Themes.Metro.dll" Name="Xceed.Wpf.AvalonDock.Themes.Metro.dll" Source="$(var.Winbot_TargetDir)Xceed.Wpf.AvalonDock.Themes.Metro.dll" />
-			 </Component>
-			 <Component Id="Xceed.Wpf.AvalonDock.Themes.VS2010.dll" Guid="39c01854-176d-4f4b-9230-057b651eaade">
-			   <File Id="Xceed.Wpf.AvalonDock.Themes.VS2010.dll" Name="Xceed.Wpf.AvalonDock.Themes.VS2010.dll" Source="$(var.Winbot_TargetDir)Xceed.Wpf.AvalonDock.Themes.VS2010.dll" />
-			 </Component>
-			 <Component Id="Xceed.Wpf.DataGrid.dll" Guid="602ac47c-a57c-4e49-a3d3-354b48a0b46f">
-			   <File Id="Xceed.Wpf.DataGrid.dll" Name="Xceed.Wpf.DataGrid.dll" Source="$(var.Winbot_TargetDir)Xceed.Wpf.DataGrid.dll" />
-			 </Component>
-			 <Component Id="Xceed.Wpf.Toolkit.dll" Guid="ffddf06a-abdd-4abf-92df-ef003569c56d">
-			   <File Id="Xceed.Wpf.Toolkit.dll" Name="Xceed.Wpf.Toolkit.dll" Source="$(var.Winbot_TargetDir)Xceed.Wpf.Toolkit.dll" />
-			 </Component> 
-		</ComponentGroup>
-	</Fragment>
+  <Fragment>
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <Component Id="Winbot.exe" Guid="cdf3c934-b261-4b6d-b67b-16e62974add5">
+        <File Id="Winbot.exe" Name="Winbot.exe" Source="$(var.Winbot_TargetDir)Winbot.exe" />
+        <ProgId Id="WinbotExeProgId">
+          <Extension Id="wib" ContentType="application/wib">
+            <Verb Id="open" Command="Open" TargetFile="Winbot.exe" Argument="&quot;%1&quot;" />
+          </Extension>
+        </ProgId>
+      </Component>
+      <Component Id="Winbot.exe.config" Guid="200a3af6-d51b-48c1-b14c-f09e3acb3d1a">
+        <File Id="Winbot.exe.config" Name="Winbot.exe.config" Source="$(var.Winbot_TargetDir)Winbot.exe.config" />
+      </Component>
+      <Component Id="GalaSoft.MvvmLight.dll" Guid="263a6e0f-bf86-4149-abfb-62e1d5b4d09f">
+        <File Id="GalaSoft.MvvmLight.dll" Name="GalaSoft.MvvmLight.dll" Source="$(var.Winbot_TargetDir)GalaSoft.MvvmLight.dll" />
+      </Component>
+      <Component Id="GalaSoft.MvvmLight.Extras.dll" Guid="5d900aea-7f5c-4a94-b939-5b4cf9d5ddf9">
+        <File Id="GalaSoft.MvvmLight.Extras.dll" Name="GalaSoft.MvvmLight.Extras.dll" Source="$(var.Winbot_TargetDir)GalaSoft.MvvmLight.Extras.dll" />
+      </Component>
+      <Component Id="GalaSoft.MvvmLight.Platform.dll" Guid="8c9408ec-ec6c-4e4b-8e68-8f372e923d7e">
+        <File Id="GalaSoft.MvvmLight.Platform.dll" Name="GalaSoft.MvvmLight.Platform.dll" Source="$(var.Winbot_TargetDir)GalaSoft.MvvmLight.Platform.dll" />
+      </Component>
+      <Component Id="LiteDB.dll" Guid="082ac405-f394-4c53-aa82-d91c70c79d13">
+        <File Id="LiteDB.dll" Name="LiteDB.dll" Source="$(var.Winbot_TargetDir)LiteDB.dll" />
+      </Component>
+      <Component Id="Microsoft.Practices.ServiceLocation.dll" Guid="994d15da-561c-4a0e-aa9a-3b19a2c63e55">
+        <File Id="Microsoft.Practices.ServiceLocation.dll" Name="Microsoft.Practices.ServiceLocation.dll" Source="$(var.Winbot_TargetDir)Microsoft.Practices.ServiceLocation.dll" />
+      </Component>
+      <Component Id="Ninject.dll" Guid="3fe9433b-a7c1-4165-9a9b-e663cb63cfaa">
+        <File Id="Ninject.dll" Name="Ninject.dll" Source="$(var.Winbot_TargetDir)Ninject.dll" />
+      </Component>
+      <Component Id="System.Windows.Interactivity.dll" Guid="d1ca9a92-c2c9-413c-a3f9-fc44fadc7210">
+        <File Id="System.Windows.Interactivity.dll" Name="System.Windows.Interactivity.dll" Source="$(var.Winbot_TargetDir)System.Windows.Interactivity.dll" />
+      </Component>
+      <Component Id="Xceed.Wpf.AvalonDock.dll" Guid="29766d75-2e50-4fbb-bdb7-da15559709d4">
+        <File Id="Xceed.Wpf.AvalonDock.dll" Name="Xceed.Wpf.AvalonDock.dll" Source="$(var.Winbot_TargetDir)Xceed.Wpf.AvalonDock.dll" />
+      </Component>
+      <Component Id="Xceed.Wpf.AvalonDock.Themes.Aero.dll" Guid="291b72e6-26fe-45fc-90b1-bf07b13a454d">
+        <File Id="Xceed.Wpf.AvalonDock.Themes.Aero.dll" Name="Xceed.Wpf.AvalonDock.Themes.Aero.dll" Source="$(var.Winbot_TargetDir)Xceed.Wpf.AvalonDock.Themes.Aero.dll" />
+      </Component>
+      <Component Id="Xceed.Wpf.AvalonDock.Themes.Metro.dll" Guid="5bdd2bdf-c9df-4651-a9df-319842b3f4ad">
+        <File Id="Xceed.Wpf.AvalonDock.Themes.Metro.dll" Name="Xceed.Wpf.AvalonDock.Themes.Metro.dll" Source="$(var.Winbot_TargetDir)Xceed.Wpf.AvalonDock.Themes.Metro.dll" />
+      </Component>
+      <Component Id="Xceed.Wpf.AvalonDock.Themes.VS2010.dll" Guid="39c01854-176d-4f4b-9230-057b651eaade">
+        <File Id="Xceed.Wpf.AvalonDock.Themes.VS2010.dll" Name="Xceed.Wpf.AvalonDock.Themes.VS2010.dll" Source="$(var.Winbot_TargetDir)Xceed.Wpf.AvalonDock.Themes.VS2010.dll" />
+      </Component>
+      <Component Id="Xceed.Wpf.DataGrid.dll" Guid="602ac47c-a57c-4e49-a3d3-354b48a0b46f">
+        <File Id="Xceed.Wpf.DataGrid.dll" Name="Xceed.Wpf.DataGrid.dll" Source="$(var.Winbot_TargetDir)Xceed.Wpf.DataGrid.dll" />
+      </Component>
+      <Component Id="Xceed.Wpf.Toolkit.dll" Guid="ffddf06a-abdd-4abf-92df-ef003569c56d">
+        <File Id="Xceed.Wpf.Toolkit.dll" Name="Xceed.Wpf.Toolkit.dll" Source="$(var.Winbot_TargetDir)Xceed.Wpf.Toolkit.dll" />
+      </Component>
+      
+    </ComponentGroup>
+  </Fragment>
 </Wix>

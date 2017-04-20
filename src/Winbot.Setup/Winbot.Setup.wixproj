@@ -23,6 +23,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="license.rtf" />
+    <Content Include="Winbot.Setup.wax" />
   </ItemGroup>
   <ItemGroup>
     <WixExtension Include="WixUIExtension">
