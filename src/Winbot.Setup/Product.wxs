@@ -3,12 +3,12 @@
 
   <?define Winbot_TargetDir=$(var.Winbot.TargetDir)?>
   <?define Version="!(bind.FileVersion.Winbot.exe)"?>
-  <?define Name="Winbot $(var.Version)"?>
+  <?define Name="Winbot  $(var.Version)"?>
 
   <Product Id="*" Name="$(var.Name)" Language="1033" Version="$(var.Version)" Manufacturer="JL" UpgradeCode="ae1bcb42-2a09-4371-9d3b-c6ba36b4358d">
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
-    <MajorUpgrade DowngradeErrorMessage="A newer version of Winbot is already installed." />
+    <MajorUpgrade AllowSameVersionUpgrades="yes" DowngradeErrorMessage="A newer version of Winbot is already installed." />
     <MediaTemplate EmbedCab="yes" />
 
     <Feature Id="ProductFeature" Title="Winbot" Level="1">
