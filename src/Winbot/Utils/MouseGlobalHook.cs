@@ -6,6 +6,7 @@ namespace Winbot.Utils
 {
     internal class MouseGlobalHook : IDisposable
     {
+        public event EventHandler<MouseEventArgs> MouseMoved;
         public event EventHandler<MouseEventArgs> MouseClicked;
         public event EventHandler<MouseEventArgs> MouseDoubleClicked;
         public event EventHandler<MouseEventArgs> MouseDown;
@@ -29,6 +30,10 @@ namespace Winbot.Utils
                 MouseEventArgs mouseEventArgs;
                 switch ((int)wParam)
                 {
+                    case WM_MOUSEMOVE:
+                        mouseEventArgs = new MouseEventArgs(MouseButtons.None, 0, arg.pt.x, arg.pt.y, 0);
+                        OnMouseMoved(mouseEventArgs);
+                        break;
                     case WM_LBUTTONDBLCLK:
                         mouseEventArgs = new MouseEventArgs(MouseButtons.Left, 2, arg.pt.x, arg.pt.y, 0);
                         OnMouseDoubleClicked(mouseEventArgs);
@@ -87,6 +92,11 @@ namespace Winbot.Utils
             return WindowsHookHelper.CallNextHookEx(_mouseHandle, code, wParam, lParam);
         }
 
+        protected virtual void OnMouseMoved(MouseEventArgs e)
+        {
+            MouseMoved?.Invoke(this, e);
+        }
+
         protected virtual void OnMouseClicked(MouseEventArgs e)
         {
             MouseClicked?.Invoke(this, e);
@@ -109,6 +119,8 @@ namespace Winbot.Utils
 
         #region WinAPI
         private const int WH_MOUSE_LL = 14;
+
+        private const int WM_MOUSEMOVE = 0x0200;
 
         private const int WM_LBUTTONDOWN = 0x0201;
         private const int WM_LBUTTONUP = 0x0202;

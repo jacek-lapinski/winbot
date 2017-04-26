@@ -10,6 +10,7 @@ namespace Winbot.Infrastructure.Ninject
     {
         public override void Load()
         {
+            Bind<UserActionNotifier>().To<MouseMoveNotifier>().InSingletonScope();
             Bind<UserActionNotifier>().To<MouseClickNotifier>().InSingletonScope();
             Bind<UserActionNotifier>().To<MouseDoubleClickNotifier>().InSingletonScope();
             Bind<UserActionNotifier>().To<MouseDownNotifier>().InSingletonScope();
@@ -17,6 +18,7 @@ namespace Winbot.Infrastructure.Ninject
             Bind<UserActionNotifier>().To<KeyDownNotifier>().InSingletonScope();
             Bind<UserActionNotifier>().To<KeyUpNotifier>().InSingletonScope();
 
+            Bind<IUserActionExecutor>().To<MouseMoveExecutor>().InSingletonScope();
             Bind<IUserActionExecutor>().To<MouseClickExecutor>().InSingletonScope();
             Bind<IUserActionExecutor>().To<MouseDoubleClickExecutor>().InSingletonScope();
             Bind<IUserActionExecutor>().To<MouseDownExecutor>().InSingletonScope();

@@ -5,6 +5,11 @@ namespace Winbot.Utils
 {
     internal static class MouseActionSimulator
     {
+        public static void MoveTo(int x, int y)
+        {
+            SetCursorPos(x, y);
+        }
+
         public static void MouseUp(MouseButtons button, int x, int y)
         {
             SetCursorPos(x, y);

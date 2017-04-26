@@ -18,7 +18,8 @@ namespace Winbot.Entities
         [XmlArrayItem(typeof(MouseDoubleClick), ElementName = nameof(MouseDoubleClick))]
         [XmlArrayItem(typeof(MouseDown), ElementName = nameof(MouseDown))]
         [XmlArrayItem(typeof(MouseUp), ElementName = nameof(MouseUp))]
-        [NewItemTypes(typeof(KeyDown), typeof(KeyUp), typeof(MouseClick), typeof(MouseDoubleClick), typeof(MouseDown), typeof(MouseUp))]
+        [XmlArrayItem(typeof(MouseMove), ElementName = nameof(MouseMove))]
+        [NewItemTypes(typeof(KeyDown), typeof(KeyUp), typeof(MouseClick), typeof(MouseDoubleClick), typeof(MouseDown), typeof(MouseUp), typeof(MouseMove))]
         public List<UserAction> Actions { get; set; }
     }
 }

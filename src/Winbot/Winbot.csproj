@@ -103,6 +103,7 @@
     <Compile Include="Entities\KeyDown.cs" />
     <Compile Include="Entities\KeyUp.cs" />
     <Compile Include="Entities\MouseDown.cs" />
+    <Compile Include="Entities\MouseMove.cs" />
     <Compile Include="Entities\MouseUp.cs" />
     <Compile Include="Entities\Scenario.cs" />
     <Compile Include="Executors\IScenarioExecutor.cs" />
@@ -112,6 +113,7 @@
     <Compile Include="Executors\MouseClickExecutor.cs" />
     <Compile Include="Executors\MouseDoubleClickExecutor.cs" />
     <Compile Include="Executors\MouseDownExecutor.cs" />
+    <Compile Include="Executors\MouseMoveExecutor.cs" />
     <Compile Include="Executors\MouseUpExecutor.cs" />
     <Compile Include="Executors\ScenarioExecutor.cs" />
     <Compile Include="Infrastructure\Ninject\DesktopAppModule.cs" />
@@ -121,6 +123,7 @@
     <Compile Include="Notifiers\KeyDownNotifier.cs" />
     <Compile Include="Notifiers\KeyUpNotifier.cs" />
     <Compile Include="Notifiers\MouseDownNotifier.cs" />
+    <Compile Include="Notifiers\MouseMoveNotifier.cs" />
     <Compile Include="Notifiers\MouseUpNotifier.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Repositories\IRepository.cs" />
