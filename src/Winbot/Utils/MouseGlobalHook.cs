@@ -7,6 +7,7 @@ namespace Winbot.Utils
     internal class MouseGlobalHook : IDisposable
     {
         public event EventHandler<MouseEventArgs> MouseMoved;
+        public event EventHandler<MouseEventArgs> MouseWheel;
         public event EventHandler<MouseEventArgs> MouseClicked;
         public event EventHandler<MouseEventArgs> MouseDoubleClicked;
         public event EventHandler<MouseEventArgs> MouseDown;
@@ -33,6 +34,16 @@ namespace Winbot.Utils
                     case WM_MOUSEMOVE:
                         mouseEventArgs = new MouseEventArgs(MouseButtons.None, 0, arg.pt.x, arg.pt.y, 0);
                         OnMouseMoved(mouseEventArgs);
+                        break;
+                    case WM_MOUSEWHEEL:
+                        var delta = 0;
+                        if (arg.mouseData > 0)
+                            delta = 1;
+                        else if (arg.mouseData < 0)
+                            delta = -1;
+
+                        mouseEventArgs = new MouseEventArgs(MouseButtons.None, 0, 0, 0, delta);
+                        OnMouseWheel(mouseEventArgs);
                         break;
                     case WM_LBUTTONDBLCLK:
                         mouseEventArgs = new MouseEventArgs(MouseButtons.Left, 2, arg.pt.x, arg.pt.y, 0);
@@ -117,10 +128,18 @@ namespace Winbot.Utils
             MouseUp?.Invoke(this, e);
         }
 
+        protected virtual void OnMouseWheel(MouseEventArgs e)
+        {
+            MouseWheel?.Invoke(this, e);
+        }
+
         #region WinAPI
         private const int WH_MOUSE_LL = 14;
 
+
         private const int WM_MOUSEMOVE = 0x0200;
+
+        private const int WM_MOUSEWHEEL = 0x020A;
 
         private const int WM_LBUTTONDOWN = 0x0201;
         private const int WM_LBUTTONUP = 0x0202;
@@ -150,7 +169,7 @@ namespace Winbot.Utils
         public struct MSLLHOOKSTRUCT
         {
             public POINT pt;
-            public uint mouseData;
+            public int mouseData;
             public uint flags;
             public uint time;
             public IntPtr dwExtraInfo;
@@ -180,6 +199,5 @@ namespace Winbot.Utils
             Dispose(false);
         }
         #endregion
-
     }
 }

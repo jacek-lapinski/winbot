@@ -15,6 +15,7 @@ namespace Winbot.Infrastructure.Ninject
             Bind<UserActionNotifier>().To<MouseDoubleClickNotifier>().InSingletonScope();
             Bind<UserActionNotifier>().To<MouseDownNotifier>().InSingletonScope();
             Bind<UserActionNotifier>().To<MouseUpNotifier>().InSingletonScope();
+            Bind<UserActionNotifier>().To<MouseWheelNotifier>().InSingletonScope();
             Bind<UserActionNotifier>().To<KeyDownNotifier>().InSingletonScope();
             Bind<UserActionNotifier>().To<KeyUpNotifier>().InSingletonScope();
 
@@ -23,6 +24,7 @@ namespace Winbot.Infrastructure.Ninject
             Bind<IUserActionExecutor>().To<MouseDoubleClickExecutor>().InSingletonScope();
             Bind<IUserActionExecutor>().To<MouseDownExecutor>().InSingletonScope();
             Bind<IUserActionExecutor>().To<MouseUpExecutor>().InSingletonScope();
+            Bind<IUserActionExecutor>().To<MouseWheelExecutor>().InSingletonScope();
             Bind<IUserActionExecutor>().To<KeyDownExecutor>().InSingletonScope();
             Bind<IUserActionExecutor>().To<KeyUpExecutor>().InSingletonScope();
 

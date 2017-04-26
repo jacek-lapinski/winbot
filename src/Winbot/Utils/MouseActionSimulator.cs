@@ -90,13 +90,19 @@ namespace Winbot.Utils
             }
         }
 
+        public static void Wheel(int delta)
+        {
+            mouse_event(MOUSEEVENTF_WHEEL, 0, 0, delta * 120, 0);
+        }
+
         #region WinAPI
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
-        public static extern void mouse_event(uint dwFlags, uint dx, uint dy, uint cButtons, uint dwExtraInfo);
+        public static extern void mouse_event(uint dwFlags, uint dx, uint dy, int dwData, uint dwExtraInfo);
 
         [DllImport("user32.dll")]
         public static extern bool SetCursorPos(int x, int y);
 
+        private const int MOUSEEVENTF_WHEEL = 0x0800;
         private const int MOUSEEVENTF_LEFTDOWN = 0x02;
         private const int MOUSEEVENTF_LEFTUP = 0x04;
         private const int MOUSEEVENTF_RIGHTDOWN = 0x08;
