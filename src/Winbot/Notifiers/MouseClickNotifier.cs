@@ -11,6 +11,7 @@ namespace Winbot.Notifiers
         private DateTime _referenceStartTime;
 
         public override string Label => "Mouse Click";
+        public override bool InitiallySelected => false;
 
         public override void Start(DateTime referenceStartTime)
         {

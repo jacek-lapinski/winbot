@@ -14,7 +14,7 @@
         ShowInTaskbar="False">
     <DockPanel LastChildFill="False" Visibility="{Binding IsRecording, Converter={StaticResource BoolToVisibilityConverter}}">
         <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Center">
-            <Button  Width="50" Content="Stop" Command="{Binding StopCommand}"></Button>
+            <Button Content="Stop" Command="{Binding StopCommand}"></Button>
         </StackPanel>
     </DockPanel>
 </Window>

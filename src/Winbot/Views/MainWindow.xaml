@@ -113,7 +113,7 @@
                                     <RowDefinition Height="30"></RowDefinition>
                                 </Grid.RowDefinitions>
                                 <Label Grid.Row="0" Grid.Column="0">File path</Label>
-                                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Settings.DatabaseFilePath}" IsEnabled="False"></TextBox>
+                                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding DbSettings.DbFilePath}"></TextBox>
                             </Grid>
                         </TabItem>
                         <TabItem Header="Events">

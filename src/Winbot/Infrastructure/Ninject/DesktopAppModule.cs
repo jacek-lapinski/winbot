@@ -30,6 +30,7 @@ namespace Winbot.Infrastructure.Ninject
 
             Bind<IScenarioExecutor>().To<ScenarioExecutor>().InSingletonScope();
 
+            Bind<Settings.DatabaseSettings>().ToSelf().InSingletonScope();
             Bind<Settings.AppSettings>().ToSelf().InSingletonScope();
             Bind(typeof(IRepository<>)).To(typeof(LocalRepository<>)).InSingletonScope();
             Bind<IScenarioBuilder>().To<ScenarioBuilder>().InSingletonScope();

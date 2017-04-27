@@ -8,16 +8,16 @@ namespace Winbot.Repositories
 {
     internal class LocalRepository<TEntity> : IRepository<TEntity> where TEntity : Entity
     {
-        private readonly AppSettings _settings;
+        private readonly DatabaseSettings _settings;
 
-        public LocalRepository(AppSettings settings)
+        public LocalRepository(DatabaseSettings settings)
         {
             _settings = settings;
         }
 
         public TEntity[] GetAll()
         {
-            using (var db = new LiteDatabase(_settings.DatabaseFilePath))
+            using (var db = new LiteDatabase(_settings.DbFilePath))
             {
                 return db.GetCollection<TEntity>().FindAll().ToArray();
             }
@@ -25,7 +25,7 @@ namespace Winbot.Repositories
 
         public void Add(TEntity entity)
         {
-            using (var db = new LiteDatabase(_settings.DatabaseFilePath))
+            using (var db = new LiteDatabase(_settings.DbFilePath))
             {
                 db.GetCollection<TEntity>().Insert(entity);
             }
@@ -33,7 +33,7 @@ namespace Winbot.Repositories
 
         public void Update(TEntity entity)
         {
-            using (var db = new LiteDatabase(_settings.DatabaseFilePath))
+            using (var db = new LiteDatabase(_settings.DbFilePath))
             {
                 var updateResult = db.GetCollection<TEntity>().Update(entity);
                 if (!updateResult)
@@ -45,7 +45,7 @@ namespace Winbot.Repositories
 
         public void Delete(TEntity entity)
         {
-            using (var db = new LiteDatabase(_settings.DatabaseFilePath))
+            using (var db = new LiteDatabase(_settings.DbFilePath))
             {
                 var deleteResult = db.GetCollection<TEntity>().Delete(entity.Id);
                 if (!deleteResult)

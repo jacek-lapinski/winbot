@@ -9,23 +9,11 @@ namespace Winbot.Settings
 {
     internal class AppSettings : INotifyPropertyChanged
     {
-        private string _databaseFilePath;
-        public string DatabaseFilePath
-        {
-            get { return _databaseFilePath;}
-            set
-            {
-                _databaseFilePath = value;
-                OnPropertyChanged();
-            }
-        }
-
         public UserActionNotifierSetting[] Notifiers { get; }
 
         public AppSettings(IEnumerable<UserActionNotifier> notifiers)
         {
-            Notifiers = notifiers.Select(n => new UserActionNotifierSetting(n){ Selected = true }).ToArray();
-            DatabaseFilePath = @"C:\db\winbot.db";
+            Notifiers = notifiers.Select(n => new UserActionNotifierSetting(n){ Selected = n.InitiallySelected }).ToArray();
         }
 
         #region NotifyPropertyChanged

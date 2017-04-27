@@ -13,6 +13,8 @@ namespace Winbot.Notifiers
         public abstract void Start(DateTime referenceStartTime);
         public abstract void Stop();
 
+        public virtual bool InitiallySelected => true;
+
         protected UserActionNotifier()
         {
             Listeners = new HashSet<IUserActionListener>();

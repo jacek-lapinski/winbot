@@ -131,6 +131,7 @@
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\LocalRepository.cs" />
+    <Compile Include="Settings\DatabaseSettings.cs" />
     <Compile Include="Settings\UserActionNotifierSetting.cs" />
     <Compile Include="Settings\AppSettings.cs" />
     <Compile Include="Utils\Converters\BoolToVisibilityConverter.cs" />

@@ -34,8 +34,18 @@ namespace Winbot.ViewModels
         public string AppName => $"Winbot {Assembly.GetExecutingAssembly().GetName().Version}";
 
         public AppSettings Settings { get; private set; }
+        public DatabaseSettings DbSettings { get; private set; }
 
-        public ObservableCollection<Scenario> Scenarios { get; private set; }
+        private ObservableCollection<Scenario> _scenarios;
+        public ObservableCollection<Scenario> Scenarios
+        {
+            get { return _scenarios;}
+            set
+            {
+                _scenarios = value;
+                RaisePropertyChanged();
+            }
+        }
 
         private Scenario _selectedScenario;
         public Scenario SelectedScenario
@@ -78,9 +88,10 @@ namespace Winbot.ViewModels
 
         public bool IsIdle => !_isExecuting && !_isRecording;
 
-        public MainViewModel(AppSettings appSettings, IScenarioBuilder scenarioBuilder, IRepository<Scenario> repository, IScenarioExecutor scenarioExecutor, IScenarioFileManager scenarioFileManager)
+        public MainViewModel(AppSettings appSettings, DatabaseSettings dbSettings, IScenarioBuilder scenarioBuilder, IRepository<Scenario> repository, IScenarioExecutor scenarioExecutor, IScenarioFileManager scenarioFileManager)
         {
             Settings = appSettings;
+            DbSettings = dbSettings;
             _scenarioBuilder = scenarioBuilder;
             _repository = repository;
             _scenarioExecutor = scenarioExecutor;
@@ -93,8 +104,19 @@ namespace Winbot.ViewModels
             EditScenarioCommand = new RelayCommand<Scenario>(EditScenario);
             ExportScenarioCommand = new RelayCommand<Scenario>(ExportScenario);
 
-            Scenarios = new ObservableCollection<Scenario>(_repository.GetAll().OrderByDescending(s => s.CreateTime));
+            DbSettings.DbFilePathChanged += DbSettings_DbFilePathChanged;
+            LoadScenarios();
             IsRecording = false;
+        }
+
+        private void LoadScenarios()
+        {
+            Scenarios = new ObservableCollection<Scenario>(_repository.GetAll().OrderByDescending(s => s.CreateTime));
+        }
+
+        private void DbSettings_DbFilePathChanged(object sender, EventArgs e)
+        {
+            LoadScenarios();
         }
 
         private void ExportScenario(Scenario scenario)
