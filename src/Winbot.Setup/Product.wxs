@@ -104,6 +104,12 @@
       <Component Id="Xceed.Wpf.Toolkit.dll" Guid="ffddf06a-abdd-4abf-92df-ef003569c56d">
         <File Id="Xceed.Wpf.Toolkit.dll" Name="Xceed.Wpf.Toolkit.dll" Source="$(var.Winbot_TargetDir)Xceed.Wpf.Toolkit.dll" />
       </Component>
+      <Component Id="Newtonsoft.Json.dll" Guid="4a696159-2293-40ea-a0ee-40d7910bc5fc">
+        <File Id="Newtonsoft.Json.dll" Name="Newtonsoft.Json.dll" Source="$(var.Winbot_TargetDir)Newtonsoft.Json.dll" />
+      </Component>
+      <Component Id="AppUpdate.exe" Guid="0d26f78b-f81a-4873-ae0d-3061c4b1b13a">
+        <File Id="AppUpdate.exe" Name="AppUpdate.exe" Source="$(var.Winbot_TargetDir)AppUpdate.exe" />
+      </Component>
       
     </ComponentGroup>
   </Fragment>
