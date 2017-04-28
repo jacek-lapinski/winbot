@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26206.0
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Winbot", "Winbot\Winbot.csproj", "{9031273E-EFE5-4E7D-B21A-B8908FFA2E67}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Winbot.UT", "Winbot.UT\Winbot.UT.csproj", "{5E96D4AD-FFD1-4D18-9381-2CE109288B41}"
 EndProject
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Winbot.Setup", "Winbot.Setup\Winbot.Setup.wixproj", "{ADB16092-6E70-4018-BD40-EB92E8D80FFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppUpdate", "MsiUpdate\AppUpdate.csproj", "{65B8443F-A1C7-4877-BF6B-B9959A38DAE7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,14 @@ Global
 		{ADB16092-6E70-4018-BD40-EB92E8D80FFF}.Release|Any CPU.ActiveCfg = Release|x86
 		{ADB16092-6E70-4018-BD40-EB92E8D80FFF}.Release|x86.ActiveCfg = Release|x86
 		{ADB16092-6E70-4018-BD40-EB92E8D80FFF}.Release|x86.Build.0 = Release|x86
+		{65B8443F-A1C7-4877-BF6B-B9959A38DAE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65B8443F-A1C7-4877-BF6B-B9959A38DAE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65B8443F-A1C7-4877-BF6B-B9959A38DAE7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{65B8443F-A1C7-4877-BF6B-B9959A38DAE7}.Debug|x86.Build.0 = Debug|Any CPU
+		{65B8443F-A1C7-4877-BF6B-B9959A38DAE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65B8443F-A1C7-4877-BF6B-B9959A38DAE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65B8443F-A1C7-4877-BF6B-B9959A38DAE7}.Release|x86.ActiveCfg = Release|Any CPU
+		{65B8443F-A1C7-4877-BF6B-B9959A38DAE7}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

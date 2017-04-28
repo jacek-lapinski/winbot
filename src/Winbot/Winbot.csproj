@@ -214,5 +214,11 @@
   <ItemGroup>
     <Resource Include="winbot.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MsiUpdate\AppUpdate.csproj">
+      <Project>{65b8443f-a1c7-4877-bf6b-b9959a38dae7}</Project>
+      <Name>AppUpdate</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
