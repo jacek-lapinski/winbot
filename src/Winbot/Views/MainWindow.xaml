@@ -148,6 +148,20 @@
                     </TabControl.Items>
                 </TabControl>
             </TabItem>
+            <TabItem Header="About">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <StackPanel.Resources>
+                        <Style TargetType="TextBlock">
+                            <Style.Setters>
+                                <Setter Property="Foreground" Value="Black"></Setter>
+                            </Style.Setters>
+                        </Style>
+                    </StackPanel.Resources>
+                    <TextBlock Text="{Binding AppName}" FontWeight="Bold"></TextBlock>
+                    <TextBlock>Author: <Hyperlink NavigateUri="http://jaceklapinski.com">Jacek Łapiński</Hyperlink></TextBlock>
+                    <TextBlock>Source code and other information are available on <Hyperlink NavigateUri="https://github.com/jacek-lapinski/winbot">github</Hyperlink></TextBlock>
+                </StackPanel>
+            </TabItem>
         </TabControl>
     </DockPanel>
     
