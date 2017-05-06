@@ -110,6 +110,9 @@
       <Component Id="AppUpdate.exe" Guid="0d26f78b-f81a-4873-ae0d-3061c4b1b13a">
         <File Id="AppUpdate.exe" Name="AppUpdate.exe" Source="$(var.Winbot_TargetDir)AppUpdate.exe" />
       </Component>
+      <Component Id="log4net.dll" Guid="19aaccad-7da9-4f68-8d44-fb9939aaf3f3">
+        <File Id="log4net.dll" Name="log4net.dll" Source="$(var.Winbot_TargetDir)log4net.dll" />
+      </Component>
       
     </ComponentGroup>
   </Fragment>

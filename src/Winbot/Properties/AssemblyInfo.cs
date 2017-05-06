@@ -54,3 +54,5 @@ using System.Windows;
 [assembly: AssemblyVersion("1.0.0.0")]
 
 [assembly: InternalsVisibleTo("Winbot.UT")]
+
+[assembly: log4net.Config.XmlConfigurator]

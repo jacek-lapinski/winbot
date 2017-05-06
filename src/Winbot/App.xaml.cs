@@ -1,6 +1,8 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using System.Windows;
 using AppUpdate;
+using log4net;
 using Winbot.Entities;
 using Winbot.Executors;
 using Winbot.Infrastructure.Ninject;
@@ -10,22 +12,53 @@ namespace Winbot
 {
     public partial class App : Application
     {
+        private readonly ILog _log;
+
+        public App()
+        {
+            NinjectBootstrapper.Initialize();
+            _log = NinjectBootstrapper.Get<ILog>();
+        }
+
         protected override void OnStartup(StartupEventArgs e)
         {
-            base.OnStartup(e);
-            NinjectBootstrapper.Initialize();
+            base.OnStartup(e);        
 
             if (e.Args.Length != 1)
             {
-                #if !DEBUG
+#if !DEBUG
                 CheckUpdates();
-                #endif
+#endif
+
+                Application.Current.DispatcherUnhandledException += Current_DispatcherUnhandledException;
+                AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
                 return;
             }
 
+            //execute only when application started from associated file
             ExecuteScenarioFromFile(e.Args[0]);
             Current.Shutdown();
+        }
+
+        private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            var exception = e.ExceptionObject as Exception;
+            if (exception != null)
+            {
+                HandleUnhandledException(exception);
+            }
+        }
+
+        private void Current_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            HandleUnhandledException(e.Exception);
+            e.Handled = true;
+        }
+
+        private void HandleUnhandledException(Exception exception)
+        {
+            _log.Error("Unhandled exception occured", exception);
         }
 
         private async void CheckUpdates()

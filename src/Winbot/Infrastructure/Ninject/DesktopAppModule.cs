@@ -1,4 +1,5 @@
-﻿using Ninject.Modules;
+﻿using log4net;
+using Ninject.Modules;
 using Winbot.Executors;
 using Winbot.Notifiers;
 using Winbot.Repositories;
@@ -10,6 +11,9 @@ namespace Winbot.Infrastructure.Ninject
     {
         public override void Load()
         {
+            var log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+            Bind<ILog>().ToConstant(log).InSingletonScope();
+
             Bind<UserActionNotifier>().To<MouseMoveNotifier>().InSingletonScope();
             Bind<UserActionNotifier>().To<MouseClickNotifier>().InSingletonScope();
             Bind<UserActionNotifier>().To<MouseDoubleClickNotifier>().InSingletonScope();
