@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
+using Ninject.Infrastructure.Language;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace Winbot.Entities
@@ -22,5 +23,10 @@ namespace Winbot.Entities
         [XmlArrayItem(typeof(MouseWheel), ElementName = nameof(MouseWheel))]
         [NewItemTypes(typeof(KeyDown), typeof(KeyUp), typeof(MouseClick), typeof(MouseDoubleClick), typeof(MouseDown), typeof(MouseUp), typeof(MouseMove), typeof(MouseWheel))]
         public List<UserAction> Actions { get; set; }
+
+        public virtual IEnumerable<UserAction> GetExecutingActions()
+        {
+            return Actions.ToEnumerable();
+        }
     }
 }

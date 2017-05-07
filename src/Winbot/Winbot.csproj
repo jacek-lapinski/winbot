@@ -102,6 +102,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Entities\ComplexScenarios\AggregateScenario.cs" />
+    <Compile Include="Entities\ComplexScenarios\ScenarioRepeat.cs" />
+    <Compile Include="Entities\ComplexScenarios\ScenarioRepeatFor.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\KeyDown.cs" />
     <Compile Include="Entities\KeyUp.cs" />

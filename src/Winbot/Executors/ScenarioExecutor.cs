@@ -20,7 +20,7 @@ namespace Winbot.Executors
         public void Execute(Scenario scenario)
         {
             var currentTime = new TimeSpan(0);
-            foreach (var action in scenario.Actions)
+            foreach (var action in scenario.GetExecutingActions())
             {
                 var sleepTime = action.Time - currentTime;
                 Thread.Sleep(sleepTime);
