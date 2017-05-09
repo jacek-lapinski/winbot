@@ -39,8 +39,11 @@
                     </Setter>
                 </Style>
             </TabControl.Resources>
-            <TabItem Header="New scenario">
+            <TabItem Header="Recording">
                 <Button Grid.Column="1" Content="Start recording" Command="{Binding StartCommand}" Width="150" Height="50"></Button>
+            </TabItem>
+            <TabItem Header="Creating">
+                
             </TabItem>
             <TabItem Header="Saved scenarios">
                 <Grid>
