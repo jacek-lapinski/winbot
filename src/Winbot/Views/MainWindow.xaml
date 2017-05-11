@@ -40,10 +40,47 @@
                 </Style>
             </TabControl.Resources>
             <TabItem Header="Recording">
-                <Button Grid.Column="1" Content="Start recording" Command="{Binding StartCommand}" Width="150" Height="50"></Button>
+                <Button Content="Start recording" Command="{Binding StartCommand}" Width="150" Height="50"></Button>
             </TabItem>
             <TabItem Header="Creating">
-                
+                <TabControl>
+                    <TabItem Header="Aggregate">
+                        <DockPanel>
+                            <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right">
+                                <Button Margin="5" Content="Create" Command="{Binding CreateAggregateScenarioCommand}"></Button>
+                            </StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="50"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <ListBox Grid.Column="0" ItemsSource="{Binding Scenarios}" SelectedItem="{Binding AggregateScenario, Mode=TwoWay}" SelectionMode="Single">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" Margin="2">
+                                                <TextBlock Text="{Binding Name}"></TextBlock>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                                <ListBox Grid.Column="2" ItemsSource="{Binding AggregateScenarios}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" Margin="2">
+                                                <TextBlock Text="{Binding Name}"></TextBlock>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                                <Button Grid.Column="1" Content="->" Height="50" Command="{Binding AddAggregateScenarioCommand}"></Button>
+                            </Grid>
+                        </DockPanel>
+                    </TabItem>
+                    <TabItem Header="Repeat">
+
+                    </TabItem>
+                </TabControl>
             </TabItem>
             <TabItem Header="Saved scenarios">
                 <Grid>
@@ -167,5 +204,5 @@
             </TabItem>
         </TabControl>
     </DockPanel>
-    
+
 </Window>

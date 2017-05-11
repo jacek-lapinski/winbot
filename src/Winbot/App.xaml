@@ -21,16 +21,23 @@
             <Style TargetType="{x:Type Button}">
                 <Style.Setters>
                     <Setter Property="Foreground" Value="{StaticResource MainColor}"></Setter>
+                    <Setter Property="Background" Value="White"></Setter>
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="Button">
-                                <Border CornerRadius="10" Background="White" BorderBrush="{StaticResource MainColor}" BorderThickness="2" MinWidth="70">
+                                <Border CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="{StaticResource MainColor}" BorderThickness="2" MinWidth="70">
                                     <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                                 </Border>
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>
                 </Style.Setters>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="{StaticResource MainColor}"/>
+                        <Setter Property="Foreground" Value="White"/>
+                    </Trigger>
+                </Style.Triggers>
             </Style>
             
         </ResourceDictionary>

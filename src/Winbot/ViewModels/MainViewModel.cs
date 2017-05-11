@@ -8,6 +8,7 @@ using System.Windows.Threading;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Winbot.Entities;
+using Winbot.Entities.ComplexScenarios;
 using Winbot.Executors;
 using Winbot.Repositories;
 using Winbot.Settings;
@@ -30,6 +31,8 @@ namespace Winbot.ViewModels
         public RelayCommand<Scenario> DeleteScenarioCommand { get; private set; }
         public RelayCommand<Scenario> EditScenarioCommand { get; private set; }
         public RelayCommand<Scenario> ExportScenarioCommand { get; private set; }
+        public RelayCommand CreateAggregateScenarioCommand { get; private set; }
+        public RelayCommand AddAggregateScenarioCommand { get; private set; }
 
         public string AppName => $"Winbot {Assembly.GetExecutingAssembly().GetName().Version}";
 
@@ -44,6 +47,30 @@ namespace Winbot.ViewModels
             {
                 _scenarios = value;
                 RaisePropertyChanged();
+            }
+        }
+
+        private ObservableCollection<Scenario> _aggregateScenarios;
+        public ObservableCollection<Scenario> AggregateScenarios
+        {
+            get { return _aggregateScenarios; }
+            set
+            {
+                _aggregateScenarios = value;
+                RaisePropertyChanged();
+                CreateAggregateScenarioCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        private Scenario _aggregateScenario;
+        public Scenario AggregateScenario
+        {
+            get { return _aggregateScenario;}
+            set
+            {
+                _aggregateScenario = value;
+                RaisePropertyChanged();
+                AddAggregateScenarioCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -97,16 +124,48 @@ namespace Winbot.ViewModels
             _scenarioExecutor = scenarioExecutor;
             _scenarioFileManager = scenarioFileManager;
 
+            _aggregateScenarios = new ObservableCollection<Scenario>();
+            _aggregateScenarios.CollectionChanged +=
+                (sender, args) => CreateAggregateScenarioCommand.RaiseCanExecuteChanged();
+
             ExecuteScenarioCommand = new RelayCommand<Scenario>(ExecuteScenario);
             DeleteScenarioCommand = new RelayCommand<Scenario>(DeleteScenario);
             StartCommand = new RelayCommand(Start);
             StopCommand = new RelayCommand(Stop);
             EditScenarioCommand = new RelayCommand<Scenario>(EditScenario);
             ExportScenarioCommand = new RelayCommand<Scenario>(ExportScenario);
+            CreateAggregateScenarioCommand = new RelayCommand(CreateAggregateScenario, AnyAggregateScenarios);
+            AddAggregateScenarioCommand = new RelayCommand(AddAggregateScenario, IsAggregateScenario);  
 
             DbSettings.DbFilePathChanged += DbSettings_DbFilePathChanged;
             LoadScenarios();
             IsRecording = false;
+        }
+
+        private void AddAggregateScenario()
+        {
+            AggregateScenarios.Add(AggregateScenario);
+        }
+
+        private bool IsAggregateScenario()
+        {
+            return AggregateScenario != null;
+        }
+
+        private void CreateAggregateScenario()
+        {
+            var aggregateScenario = new AggregateScenario(AggregateScenarios)
+            {
+                CreateTime = DateTime.Now,
+                UpdateTime = DateTime.Now,
+                Name = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss")
+            };
+            _repository.Add(aggregateScenario);
+        }
+
+        private bool AnyAggregateScenarios()
+        {
+            return AggregateScenarios != null && AggregateScenarios.Any();
         }
 
         private void LoadScenarios()

@@ -1,7 +1,9 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 
 namespace Winbot.Entities
 {
+    [Serializable]
     public class MouseUp : UserAction
     {
         public MouseButtons Button { get; set; }

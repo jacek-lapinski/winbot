@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Serialization;
 
 namespace Winbot.Entities.ComplexScenarios
@@ -13,9 +14,14 @@ namespace Winbot.Entities.ComplexScenarios
         [XmlArrayItem(typeof(ScenarioRepeatFor), ElementName = nameof(ScenarioRepeatFor))]
         public List<Scenario> Scenarios { get; set; }
 
-        public AggregateScenario()
+        public AggregateScenario() : this(Enumerable.Empty<Scenario>())
         {
-            Scenarios = new List<Scenario>();
+            
+        }
+
+        public AggregateScenario(IEnumerable<Scenario> scenarios)
+        {
+            Scenarios = new List<Scenario>(scenarios);
         }
 
         public override IEnumerable<UserAction> GetExecutingActions()
