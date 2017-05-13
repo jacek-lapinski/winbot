@@ -25,7 +25,7 @@
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="Button">
-                                <Border CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="{StaticResource MainColor}" BorderThickness="2" MinWidth="70">
+                                <Border CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="{StaticResource MainColor}" BorderThickness="2">
                                     <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                                 </Border>
                             </ControlTemplate>
@@ -36,6 +36,9 @@
                     <Trigger Property="IsMouseOver" Value="True">
                         <Setter Property="Background" Value="{StaticResource MainColor}"/>
                         <Setter Property="Foreground" Value="White"/>
+                    </Trigger>
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Setter Property="Background" Value="LightGray"/>
                     </Trigger>
                 </Style.Triggers>
             </Style>

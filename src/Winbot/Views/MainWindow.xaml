@@ -46,13 +46,14 @@
                 <TabControl>
                     <TabItem Header="Aggregate">
                         <DockPanel>
-                            <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right">
+                            <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right" Orientation="Horizontal">
+                                <Button Margin="5" Content="Clear" Command="{Binding ClearAggregateScenariosCommand}"></Button>
                                 <Button Margin="5" Content="Create" Command="{Binding CreateAggregateScenarioCommand}"></Button>
                             </StackPanel>
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
-                                    <ColumnDefinition Width="50"></ColumnDefinition>
+                                    <ColumnDefinition Width="44"></ColumnDefinition>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
                                 <ListBox Grid.Column="0" ItemsSource="{Binding Scenarios}" SelectedItem="{Binding AggregateScenario, Mode=TwoWay}" SelectionMode="Single">
@@ -73,7 +74,7 @@
                                         </DataTemplate>
                                     </ListBox.ItemTemplate>
                                 </ListBox>
-                                <Button Grid.Column="1" Content="->" Height="50" Command="{Binding AddAggregateScenarioCommand}"></Button>
+                                <Button Grid.Column="1" Content="->" Height="40" Width="40" Command="{Binding AddAggregateScenarioCommand}"></Button>
                             </Grid>
                         </DockPanel>
                     </TabItem>

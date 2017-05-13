@@ -33,6 +33,7 @@ namespace Winbot.ViewModels
         public RelayCommand<Scenario> ExportScenarioCommand { get; private set; }
         public RelayCommand CreateAggregateScenarioCommand { get; private set; }
         public RelayCommand AddAggregateScenarioCommand { get; private set; }
+        public RelayCommand ClearAggregateScenariosCommand { get; private set; }
 
         public string AppName => $"Winbot {Assembly.GetExecutingAssembly().GetName().Version}";
 
@@ -59,6 +60,7 @@ namespace Winbot.ViewModels
                 _aggregateScenarios = value;
                 RaisePropertyChanged();
                 CreateAggregateScenarioCommand.RaiseCanExecuteChanged();
+                ClearAggregateScenariosCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -126,7 +128,11 @@ namespace Winbot.ViewModels
 
             _aggregateScenarios = new ObservableCollection<Scenario>();
             _aggregateScenarios.CollectionChanged +=
-                (sender, args) => CreateAggregateScenarioCommand.RaiseCanExecuteChanged();
+                (sender, args) =>
+                {
+                    CreateAggregateScenarioCommand.RaiseCanExecuteChanged();
+                    ClearAggregateScenariosCommand.RaiseCanExecuteChanged();
+                };
 
             ExecuteScenarioCommand = new RelayCommand<Scenario>(ExecuteScenario);
             DeleteScenarioCommand = new RelayCommand<Scenario>(DeleteScenario);
@@ -136,10 +142,16 @@ namespace Winbot.ViewModels
             ExportScenarioCommand = new RelayCommand<Scenario>(ExportScenario);
             CreateAggregateScenarioCommand = new RelayCommand(CreateAggregateScenario, AnyAggregateScenarios);
             AddAggregateScenarioCommand = new RelayCommand(AddAggregateScenario, IsAggregateScenario);  
+            ClearAggregateScenariosCommand = new RelayCommand(ClearAggregateScenarios, AnyAggregateScenarios);
 
             DbSettings.DbFilePathChanged += DbSettings_DbFilePathChanged;
             LoadScenarios();
             IsRecording = false;
+        }
+
+        private void ClearAggregateScenarios()
+        {
+            AggregateScenarios.Clear();
         }
 
         private void AddAggregateScenario()
